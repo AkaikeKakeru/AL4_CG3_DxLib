@@ -2,8 +2,8 @@
 #include "DxLib.h"
 
 void Line::Initialize(){
-	posS = { 200,200 };
-	posE = { 500,500 };
+	posE = { 200,100 };
+	posS = { 500,400 };
 	color = GetColor(50, 180, 180);
 }
 

@@ -10,5 +10,5 @@ public:
 	Vector2 posS;
 	Vector2 posE;
 
-	unsigned int color;
+	unsigned int color = 0;
 };

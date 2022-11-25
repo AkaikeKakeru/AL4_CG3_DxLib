@@ -4,10 +4,10 @@
 class Circle{
 public:
 	void Initialize();
-	void Update();
+	void Update(bool isHit);
 	void Draw();
 
 	Vector2 pos;
-	int r;
-	unsigned int color;
+	int r = 0;
+	unsigned int color = 0;
 };

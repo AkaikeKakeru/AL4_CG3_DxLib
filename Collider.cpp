@@ -4,4 +4,5 @@ void Collider::Initialize(){
 }
 
 void Collider::Update(){
+
 }
