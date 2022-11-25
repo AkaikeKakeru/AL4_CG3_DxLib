@@ -10,13 +10,13 @@ public:
 	Vector2();	//零ベクトルとして生成
 	Vector2(float x, float y);	//x成分,y成分を指定しての生成
 
-								//メンバ関数
+	//メンバ関数
 	float Vec2Length() const;	//ノルム(長さ)を求める
 	Vector2& Vec2Normalize();	//正規化する
 	float Vec2Dot(const Vector2& v) const;	//内積を求める
 	float Vec2Cross(const Vector2& v) const;	//外積を求める
 
-												//単項演算子オーバーロード
+	//単項演算子オーバーロード
 	Vector2 operator+() const;
 	Vector2 operator-() const;
 

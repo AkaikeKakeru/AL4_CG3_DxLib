@@ -16,7 +16,7 @@ const int WIN_WIDTH = 800;
 const int WIN_HEIGHT = 600;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
-                   _In_ int nCmdShow) {
+	_In_ int nCmdShow) {
 	// ウィンドウモードに設定
 	ChangeWindowMode(TRUE);
 
@@ -46,27 +46,38 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// 画像などのリソースデータの変数宣言と読み込み
 
 	// ゲームループで使う変数の宣言
+	//円
 	Circle* circle = new Circle;
 	circle->Initialize();
 
+	//線
 	Line* line = new Line;
 	line->Initialize();
 
+	//コライダー
 	Collider* collider = new Collider;
 	collider->Initialize();
 
+	//テキスト位置
 	Vector2 textPos = { 200,550 };
+
+	//テキスト色
 	unsigned textColor = GetColor(200, 200, 200);
 
-	char colText[] = {"当たってます"};
-	char notColText[] = {"当たってません"};
+	//衝突テキスト
+	char colText[] = { "当たってます" };
+
+	//衝突してないテキスト
+	char notColText[] = { "当たってません" };
+
+	//テキストのポインタ
 	TCHAR* text = nullptr;
 
 	// 最新のキーボード情報用
-	char keys[256] = {0};
+	char keys[256] = { 0 };
 
 	// 1ループ(フレーム)前のキーボード情報
-	char oldkeys[256] = {0};
+	char oldkeys[256] = { 0 };
 
 	// ゲームループ
 	while (true) {
@@ -79,9 +90,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
+		//コライダーを動かす
+		//コライダーから、衝突判定を貰う
+		collider->Update(circle, line);
 
-		collider->Update(circle,line);
-
+		//衝突してるなら衝突テキスト
 		if (collider->GetIsHit()) {
 			text = colText;
 		}
@@ -89,14 +102,18 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			text = notColText;
 		}
 
+		//円の更新
 		circle->Update(collider->GetIsHit());
+		//線の更新
 		line->Update();
 
 		// 描画処理
-
+		//円の描画
 		circle->Draw();
+		//線の描画
 		line->Draw();
 
+		//テキストの描画
 		DrawFormatString(
 			textPos.x, textPos.y,
 			textColor,

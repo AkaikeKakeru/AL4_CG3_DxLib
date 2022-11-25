@@ -1,24 +1,31 @@
 #include "Circle.h"
 #include "DxLib.h"
 
+//初期化
 void Circle::Initialize(){
-	pos = { 600, 200 };
-	r = 40;
-	color = GetColor(180, 180, 50);
+	pos_ = { 600, 200 };
+	r_ = 40;
+	color_ = GetColor(180, 180, 50);
 }
 
+//更新
 void Circle::Update(bool isHit){
-	pos.x -= 4;
-	pos.y += 1;
+	//自動移動
+	pos_.x -= 4;
+	//自動移動
+	pos_.y += 1;
 
+	//衝突してるなら赤色に
 	if (isHit) {
-		color = GetColor(180, 50, 50);
+		color_ = GetColor(180, 50, 50);
 	}
+	//してないなら黄色に
 	else {
-		color = GetColor(180, 180, 50);
+		color_ = GetColor(180, 180, 50);
 	}
 }
 
+//描画
 void Circle::Draw(){
-	DrawCircle(pos.x, pos.y, r, color);
+	DrawCircle(pos_.x, pos_.y, r_, color_);
 }
