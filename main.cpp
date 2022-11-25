@@ -4,15 +4,17 @@
 //#include "Scene.h"
 #include "Circle.h"
 #include "Line.h"
+#include "Vector2.h"
+#include <cmath>
 
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "LE2B_01_アカイケ_カケル: 円と線の衝突判定";
 
 // ウィンドウ横幅
-const int WIN_WIDTH = 1200;
+const int WIN_WIDTH = 800;
 
 // ウィンドウ縦幅
-const int WIN_HEIGHT = 800;
+const int WIN_HEIGHT = 600;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
                    _In_ int nCmdShow) {
@@ -43,6 +45,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 
 	// 画像などのリソースデータの変数宣言と読み込み
+
+	// ゲームループで使う変数の宣言
 	//Scene* scene = new Scene;
 	//scene->Initialize();
 
@@ -52,9 +56,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	Line* line = new Line;
 	line->Initialize();
 
-	// ゲームループで使う変数の宣言
+	bool isHit = false;
 
+	Vector2 textPos = { 200,550 };
+	unsigned textColor = GetColor(200, 200, 200);
 
+	char colText[] = {"当たってます"};
+	char notColText[] = {"当たってません"};
+	TCHAR* text = nullptr;
 
 	// 最新のキーボード情報用
 	char keys[256] = {0};
@@ -73,16 +82,38 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
-		//scene->Update();
+		//scene->Update();l
+		Vector2 distanceS = circle->pos - line->posS;
+		Vector2 lineVector = line->posE - line->posS;
 
-		circle->Update();
+		lineVector = lineVector.Vec2Normalize();
+
+		float distanceSLtoC = 
+			distanceS.x * lineVector.y 
+			- lineVector.x  * distanceS.y;
+
+		if (fabs(distanceSLtoC)	< circle->r) {
+			isHit = true;
+			text = colText;
+		}
+		else {
+			isHit = false;
+			text = notColText;
+		}
+
+		circle->Update(isHit);
 		line->Update();
 
 		// 描画処理
 		//scene->Draw();
+
 		circle->Draw();
 		line->Draw();
 
+		DrawFormatString(
+			textPos.x, textPos.y,
+			textColor,
+			text);
 		//---------  ここまでにプログラムを記述  ---------//
 
 		// (ダブルバッファ)裏面
