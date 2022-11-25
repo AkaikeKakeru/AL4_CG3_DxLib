@@ -133,16 +133,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DxBasis.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DxBasis.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="SafeDelete.h" />
     <ClInclude Include="Scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
