@@ -92,7 +92,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// 更新処理
 		//コライダーを動かす
 		//コライダーから、衝突判定を貰う
-		collider->Update(circle, line);
+		collider->UpdateCross(circle, line);
 
 		//衝突してるなら衝突テキスト
 		if (collider->GetIsHit()) {

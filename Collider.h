@@ -7,8 +7,10 @@ class Collider {
 public://基本の関数
 	//初期化
 	void Initialize();
-	//更新
-	void Update(Circle* circle,Line* line);
+	//外積で更新
+	void UpdateCross(Circle* circle,Line* line);
+	//内積で更新
+	void UpdateDot(Circle* circle,Line* line);
 
 public://ゲッター
 	//衝突判定を取得できる

@@ -6,7 +6,7 @@ void Collider::Initialize(){
 }
 
 //更新
-void Collider::Update(Circle* circle,Line* line){
+void Collider::UpdateCross(Circle* circle,Line* line){
 	//線のスタート位置→円の中心
 	Vector2 vecStoC = circle->GetPos() - line->GetStartPos();
 	
@@ -26,4 +26,8 @@ void Collider::Update(Circle* circle,Line* line){
 	else {
 		isHit_ = false;
 	}
+}
+
+void Collider::UpdateDot(Circle* circle, Line* line)
+{
 }
