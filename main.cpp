@@ -1,13 +1,18 @@
 #include "DxLib.h"
+#include "SafeDelete.h"
+//#include "DxBasis.h"
+//#include "Scene.h"
+#include "Circle.h"
+#include "Line.h"
 
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "LE2B_01_アカイケ_カケル: 円と線の衝突判定";
 
 // ウィンドウ横幅
-const int WIN_WIDTH = 600;
+const int WIN_WIDTH = 1200;
 
 // ウィンドウ縦幅
-const int WIN_HEIGHT = 400;
+const int WIN_HEIGHT = 800;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
                    _In_ int nCmdShow) {
@@ -18,7 +23,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// かつウィンドウサイズに合わせて拡大できないようにする
 	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
 
-	// タイトルを変更
+	//タイトルを変更
 	SetMainWindowText(TITLE);
 
 	// 画面サイズの最大サイズ、カラービット数を設定(モニターの解像度に合わせる)
@@ -36,10 +41,20 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// (ダブルバッファ)描画先グラフィック領域は裏面を指定
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	// 画像などのリソースデータの変数宣言と読み込み
 
+	// 画像などのリソースデータの変数宣言と読み込み
+	//Scene* scene = new Scene;
+	//scene->Initialize();
+
+	Circle* circle = new Circle;
+	circle->Initialize();
+
+	Line* line = new Line;
+	line->Initialize();
 
 	// ゲームループで使う変数の宣言
+
+
 
 	// 最新のキーボード情報用
 	char keys[256] = {0};
@@ -52,17 +67,24 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// 最新のキーボード情報だったものは1フレーム前のキーボード情報として保存
 		// 最新のキーボード情報を取得
 		GetHitKeyStateAll(keys);
-
 		// 画面クリア
 		ClearDrawScreen();
+
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
+		//scene->Update();
 
+		circle->Update();
+		line->Update();
 
 		// 描画処理
+		//scene->Draw();
+		circle->Draw();
+		line->Draw();
 
 		//---------  ここまでにプログラムを記述  ---------//
+
 		// (ダブルバッファ)裏面
 		ScreenFlip();
 
@@ -79,6 +101,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			break;
 		}
 	}
+
+	//解放
+	//SafeDelete(scene);
+	SafeDelete(circle);
+	SafeDelete(line);
+
 	// Dxライブラリ終了処理
 	DxLib_End();
 

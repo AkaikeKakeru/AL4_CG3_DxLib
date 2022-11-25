@@ -6,4 +6,10 @@ public:
 	void Update();
 	void Draw();
 private:
+	int xS;
+	int xE;
+	int yS;
+	int yE;
+
+	unsigned int color;
 };
