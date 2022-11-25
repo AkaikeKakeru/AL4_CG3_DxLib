@@ -2,10 +2,8 @@
 #include "DxLib.h"
 
 void Line::Initialize(){
-	xS = 200;
-	xE = 500;
-	yS = 200;
-	yE = 500;
+	posS = { 200,200 };
+	posE = { 500,500 };
 	color = GetColor(50, 180, 180);
 }
 
@@ -13,5 +11,5 @@ void Line::Update(){
 }
 
 void Line::Draw(){
-	DrawLine(xS, yS, xE, yE, color);
+	DrawLine(posS.x,posS.y, posE.x,posE.y, color);
 }
