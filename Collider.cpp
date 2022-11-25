@@ -1,10 +1,8 @@
 #include "Collider.h"
-#include "Circle.h"
-#include "Line.h"
-#include "Vector2.h"
 #include <cmath>
 
 void Collider::Initialize(){
+	isHit_ = false;
 }
 
 void Collider::Update(Circle* circle,Line* line){

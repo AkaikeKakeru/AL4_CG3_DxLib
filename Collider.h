@@ -1,4 +1,7 @@
 #pragma once
+#include "Circle.h"
+#include "Line.h"
+#include "Vector2.h"
 
 class Collider {
 public:
@@ -7,5 +10,5 @@ public:
 
 	bool GetIsHit() const { return isHit_; }
 private:
-	bool isHit_ = false;
+	bool isHit_;
 };
