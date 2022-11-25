@@ -4,6 +4,7 @@
 //#include "Scene.h"
 #include "Circle.h"
 #include "Line.h"
+#include "Collider.h"
 #include "Vector2.h"
 #include <cmath>
 
@@ -56,7 +57,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	Line* line = new Line;
 	line->Initialize();
 
-	bool isHit = false;
+	Collider* collider = new Collider;
+	collider->Initialize();
 
 	Vector2 textPos = { 200,550 };
 	unsigned textColor = GetColor(200, 200, 200);
@@ -82,26 +84,18 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
-		//scene->Update();l
-		Vector2 distanceS = circle->pos - line->posS;
-		Vector2 lineVector = line->posE - line->posS;
+		//scene->Update();
 
-		lineVector = lineVector.Vec2Normalize();
+		collider->Update(circle,line);
 
-		float distanceSLtoC = 
-			distanceS.x * lineVector.y 
-			- lineVector.x  * distanceS.y;
-
-		if (fabs(distanceSLtoC)	< circle->r) {
-			isHit = true;
+		if (collider->GetIsHit()) {
 			text = colText;
 		}
 		else {
-			isHit = false;
 			text = notColText;
 		}
 
-		circle->Update(isHit);
+		circle->Update(collider->GetIsHit());
 		line->Update();
 
 		// 描画処理
