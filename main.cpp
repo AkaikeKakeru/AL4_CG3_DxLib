@@ -1,7 +1,7 @@
 #include "DxLib.h"
 
 // ウィンドウのタイトルに表示する文字列
-const char TITLE[] = "xx2x_xx_ナマエ: タイトル";
+const char TITLE[] = "LE2B_01_アカイケ_カケル: 円と線の衝突判定";
 
 // ウィンドウ横幅
 const int WIN_WIDTH = 600;
@@ -40,7 +40,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 
 	// ゲームループで使う変数の宣言
-
 
 	// 最新のキーボード情報用
 	char keys[256] = {0};
