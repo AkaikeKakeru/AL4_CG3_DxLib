@@ -1,7 +1,5 @@
 #include "DxLib.h"
 #include "SafeDelete.h"
-//#include "DxBasis.h"
-//#include "Scene.h"
 #include "Circle.h"
 #include "Line.h"
 #include "Collider.h"
@@ -48,9 +46,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// 画像などのリソースデータの変数宣言と読み込み
 
 	// ゲームループで使う変数の宣言
-	//Scene* scene = new Scene;
-	//scene->Initialize();
-
 	Circle* circle = new Circle;
 	circle->Initialize();
 
@@ -84,7 +79,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
-		//scene->Update();
 
 		collider->Update(circle,line);
 
@@ -99,7 +93,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		line->Update();
 
 		// 描画処理
-		//scene->Draw();
 
 		circle->Draw();
 		line->Draw();
@@ -128,7 +121,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	}
 
 	//解放
-	//SafeDelete(scene);
 	SafeDelete(collider);
 	SafeDelete(circle);
 	SafeDelete(line);
